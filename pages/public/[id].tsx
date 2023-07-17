@@ -12,7 +12,7 @@ export const getStaticPaths = async () => {
   });
 
   const paths = data.contents.map((content) => `/public/${content.id}`);
-  return { paths, fallback: false };
+  return { paths, fallback: "blocking" };
 };
 
 export const getStaticProps: GetStaticProps = async (context) => {
@@ -26,6 +26,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
     props: {
       data,
     },
+    revalidate: 60,
   };
 };
 
